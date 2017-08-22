@@ -4,15 +4,18 @@ const buildPath = path.resolve(__dirname, 'build');
 const nodeModulesPath = path.resolve(__dirname, 'node_modules');
 const TransferWebpackPlugin = require('transfer-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var CssEntryPlugin = require("css-entry-webpack-plugin");
 
 const VENDOR_LIBS = [
   'react', 'redux', 'react-redux', 'react-dom',
-   'redux-form', 'redux-thunk'
+  'redux-form', 'redux-thunk'
 ];
 
 const config = {
   entry: {
-    bundle:[path.join(__dirname, '/src/app/app.js')],
+    styles: [path.join(__dirname, '/src/www/main.css')],
+    bundle: [path.join(__dirname, '/src/app/app.js')],
     vendor: VENDOR_LIBS
   },
 
@@ -27,24 +30,34 @@ const config = {
   plugins: [
     // Define production build to allow React to strip out unnecessary checks
     new webpack.DefinePlugin({
-      'process.env':{
+      'process.env': {
         'NODE_ENV': JSON.stringify('production')
       }
     }),
     // Minify the bundle
     new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        // suppresses warnings, usually from module minification
-        warnings: false,
+      beautify: false,
+      mangle: {
+        screw_ie8: true,
+        keep_fnames: true
       },
+      compress: {
+        screw_ie8: true
+      },
+      comments: false
     }),
 
+
     new webpack.optimize.CommonsChunkPlugin("vendor"),
-     new HtmlWebpackPlugin({
-      template: 'src/www/index.html'
+    new HtmlWebpackPlugin({
+      template: 'src/www/index.html',
+      chunksSortMode: 'dependency'
     }),
+    
     // Allows error warnings but does not stop compiling.
     new webpack.NoEmitOnErrorsPlugin(),
+    new ExtractTextPlugin("main.css")
+    
     // Transfer Files
     // new TransferWebpackPlugin([
     //   {from: 'www'},
@@ -58,6 +71,7 @@ const config = {
     modules: ['src', 'node_modules'],
   },
   module: {
+    
     loaders: [
       {
         test: /\.js$/, // All .js files
@@ -69,6 +83,27 @@ const config = {
         test: /\.tsx?$/, // All .js files
         loaders: ['babel-loader?presets[]=es2015&presets[]=stage-0&presets[]=react', 'ts-loader'], // react-hot is like browser sync and babel loads jsx and es6-7
         exclude: [nodeModulesPath],
+      },
+      {
+        test: /\.css/,
+        loader: ExtractTextPlugin.extract("css-loader")
+      },
+        //loaders: ["style-loader", "css-loader"],
+        //include: [path.join(__dirname, '/src/www/main.css')],
+        //use: ['to-string-loader', 'css-loader'],
+      
+      {
+        test: /\.(jpg|png|gif)$/,
+        use: 'file-loader'
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|svg)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 100000
+          }
+        }
       }
     ],
   },

@@ -48,7 +48,7 @@ const config = {
     new TransferWebpackPlugin([
       { from: 'www'},
     ], path.resolve(__dirname, 'src'))
-  ],
+  ],  
   resolve: {
     // Look for modules in .ts(x) files first, then .js
     extensions: ['.ts', '.tsx', '.js'],
