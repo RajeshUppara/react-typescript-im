@@ -3,9 +3,20 @@ const path = require('path');
 const buildPath = path.resolve(__dirname, 'build');
 const nodeModulesPath = path.resolve(__dirname, 'node_modules');
 const TransferWebpackPlugin = require('transfer-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const VENDOR_LIBS = [
+  'react', 'redux', 'react-redux', 'react-dom',
+   'redux-form', 'redux-thunk'
+];
 
 const config = {
-  entry: [path.join(__dirname, '/src/app/app.js')],
+  entry: {
+    bundle:[path.join(__dirname, '/src/app/app.js')],
+    vendor: VENDOR_LIBS
+  },
+
+  //entry: [path.join(__dirname, '/src/app/app.js')],
   // Render source-map file for final build
   devtool: 'source-map',
   // output config
@@ -27,12 +38,17 @@ const config = {
         warnings: false,
       },
     }),
+
+    new webpack.optimize.CommonsChunkPlugin("vendor"),
+     new HtmlWebpackPlugin({
+      template: 'src/www/index.html'
+    }),
     // Allows error warnings but does not stop compiling.
     new webpack.NoEmitOnErrorsPlugin(),
     // Transfer Files
-    new TransferWebpackPlugin([
-      {from: 'www'},
-    ], path.resolve(__dirname, 'src')),
+    // new TransferWebpackPlugin([
+    //   {from: 'www'},
+    // ], path.resolve(__dirname, 'src')),
   ],
   resolve: {
     // Look for modules in .ts(x) files first, then .js
