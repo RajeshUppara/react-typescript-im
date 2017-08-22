@@ -13,14 +13,10 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-      <Routes />
-    </Provider>
-      // <Provider store={store}>
-      //   <MuiThemeProvider muiTheme={muiTheme}>
-      //     <Router history={hashHistory} routes={routes}>
-      //     </Router>
-      //   </MuiThemeProvider>
-      // </Provider>
+        <MuiThemeProvider muiTheme={muiTheme}>
+          <Routes />
+        </MuiThemeProvider>
+      </Provider>
     );
   }
 }
