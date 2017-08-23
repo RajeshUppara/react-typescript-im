@@ -16,8 +16,12 @@ const config = {
   entry: {
     styles: [
       path.join(__dirname, '/src/www/styles/main.css'),
-      path.join(__dirname, '/src/www/styles/styles.css') ],
-    bundle: [path.join(__dirname, '/src/app/app.js')],
+      path.join(__dirname, '/src/www/styles/styles.css'),
+      path.join(__dirname, '/src/www/styles.scss'),
+    ],
+    bundle: [
+      path.join(__dirname, '/src/app/app.js')
+    ],
     vendor: VENDOR_LIBS
   },
 
@@ -53,17 +57,26 @@ const config = {
     new webpack.optimize.CommonsChunkPlugin("vendor"),
     new HtmlWebpackPlugin({
       template: 'src/www/index.html',
-      chunksSortMode: 'dependency'
+      chunksSortMode: 'dependency',
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        minifyJS: true
+      }
     }),
-    
+
     // Allows error warnings but does not stop compiling.
     new webpack.NoEmitOnErrorsPlugin(),
-    new ExtractTextPlugin("main.css")
-    
-    // Transfer Files
-    // new TransferWebpackPlugin([
-    //   {from: 'www'},
-    // ], path.resolve(__dirname, 'src')),
+    new ExtractTextPlugin("main.[hash].css"),
+
+    //Transfer Files
+    new TransferWebpackPlugin([{
+      from: 'www/assets',
+      to: 'www/assets'
+    },], path.resolve(__dirname, 'src')),
   ],
   resolve: {
     // Look for modules in .ts(x) files first, then .js
@@ -73,40 +86,39 @@ const config = {
     modules: ['src', 'node_modules'],
   },
   module: {
-    
-    loaders: [
-      {
-        test: /\.js$/, // All .js files
-        loaders: ['babel-loader?presets[]=es2015&presets[]=stage-0&presets[]=react'], // react-hot is like browser sync and babel loads jsx and es6-7
-        exclude: [nodeModulesPath],
-      },
-      {
-        // React-hot loader and
-        test: /\.tsx?$/, // All .js files
-        loaders: ['babel-loader?presets[]=es2015&presets[]=stage-0&presets[]=react', 'ts-loader'], // react-hot is like browser sync and babel loads jsx and es6-7
-        exclude: [nodeModulesPath],
-      },
-      {
-        test: /\.css/,
-        loader: ExtractTextPlugin.extract("css-loader")
-      },
-        //loaders: ["style-loader", "css-loader"],
-        //include: [path.join(__dirname, '/src/www/main.css')],
-        //use: ['to-string-loader', 'css-loader'],
-      
-      {
-        test: /\.(jpg|png|gif)$/,
-        use: 'file-loader'
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|svg)$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 100000
-          }
+
+    loaders: [{
+      test: /\.js$/, // All .js files
+      loaders: ['babel-loader?presets[]=es2015&presets[]=stage-0&presets[]=react'], // react-hot is like browser sync and babel loads jsx and es6-7
+      exclude: [nodeModulesPath],
+    },
+    {
+      // React-hot loader and
+      test: /\.tsx?$/, // All .js files
+      loaders: ['babel-loader?presets[]=es2015&presets[]=stage-0&presets[]=react', 'ts-loader'], // react-hot is like browser sync and babel loads jsx and es6-7
+      exclude: [nodeModulesPath],
+    },
+    {
+      test: /\.css/,
+      loader: ExtractTextPlugin.extract("css-loader")
+    },
+    {
+      test: /\.scss$/,
+      loader: ExtractTextPlugin.extract('css-loader!sass-loader')
+    },
+    {
+      test: /\.(jpg|png|gif)$/,
+      use: 'file-loader'
+    },
+    {
+      test: /\.(woff|woff2|eot|ttf|svg)$/,
+      use: {
+        loader: 'url-loader',
+        options: {
+          limit: 100000
         }
       }
+    }
     ],
   },
 };
