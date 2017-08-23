@@ -1,11 +1,11 @@
 const webpack = require('webpack');
 const path = require('path');
+const TransferWebpackPlugin = require('transfer-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 const buildPath = path.resolve(__dirname, 'build');
 const nodeModulesPath = path.resolve(__dirname, 'node_modules');
-const TransferWebpackPlugin = require('transfer-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var CssEntryPlugin = require("css-entry-webpack-plugin");
 
 const VENDOR_LIBS = [
   'react', 'redux', 'react-redux', 'react-dom',
@@ -14,7 +14,9 @@ const VENDOR_LIBS = [
 
 const config = {
   entry: {
-    styles: [path.join(__dirname, '/src/www/main.css')],
+    styles: [
+      path.join(__dirname, '/src/www/styles/main.css'),
+      path.join(__dirname, '/src/www/styles/styles.css') ],
     bundle: [path.join(__dirname, '/src/app/app.js')],
     vendor: VENDOR_LIBS
   },
