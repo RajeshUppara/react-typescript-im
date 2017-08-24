@@ -7,7 +7,6 @@ export function redirectEvent(redirectUrl: string): Action<IRedirectUrl> {
   return {
     type: types.REDIRECT_URL,
     payload: {
-      type: types.REDIRECT_URL,
       redirectUrl: redirectUrl
     }
   };
@@ -17,7 +16,6 @@ export function loaderEvent(showLoader: boolean): Action<IShowLoader> {
   return {
     type: types.SHOW_LOADER,
     payload: {
-      type: types.SHOW_LOADER,
       showLoader
     }
   };
@@ -27,7 +25,6 @@ export function toastEvent(message: string, showToast: boolean): Action<IShowToa
   return {
     type: types.SHOW_TOAST,
     payload: {
-      type: types.SHOW_TOAST,
       message,
       showToast
     }

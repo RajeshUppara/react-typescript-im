@@ -10,7 +10,7 @@ const initialState = Immutable({
 });
 
 export default function common(state = initialState, action: Action<any>) {
-  switch (action.payload.type) {
+  switch (action.type) {
     case types.SHOW_TOAST:
       return Object.assign({}, state, {
         showToast: action.payload.showToast,
