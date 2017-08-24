@@ -1,3 +1,4 @@
+import { } from './redux/common/reducer';
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { fade } from 'material-ui/utils/colorManipulator';
@@ -23,11 +24,15 @@ import Immutable from 'seamless-immutable';
 import { routerMiddleware, push } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
-import * as reducers from './redux/index';
+import  { form, common,loginform } from './redux/index';
 
 const logger = createLogger();
 const createStoreWithMiddleware = applyMiddleware(thunk, logger)(createStore);
-const reducer = combineReducers<any>(reducers);
+const reducer = combineReducers({
+  form,
+  common,
+  loginform
+});
 export const store = createStoreWithMiddleware(reducer);
 //import DataService from './shared/DataService';
 //let createStoreWithMiddleware = applyMiddleware(DataService)(createStore)

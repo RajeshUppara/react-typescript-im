@@ -1,7 +1,7 @@
 import request from 'superagent';
 import Storage from '../../shared/utils/Storage';
 import Action from '../IAction';
-import { types, IRedirectUrl, IShowLoader, IShowToast } from './ICommonTypes';
+import { types, IRedirectUrl, IShowLoader, IShowToast } from './model';
 
 export function redirectEvent(redirectUrl: string): Action<IRedirectUrl> {
   return {
