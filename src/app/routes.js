@@ -25,13 +25,13 @@ const componentRoutes = {
             .then(module => cb(null, module.default));
         }
       },
-      {
-        path: '/forgotpassword',
-        getComponent(location, cb) {
-          System.import('./containers/forgotpassword/ForgotPassword')
-            .then(module => cb(null, module.default));
-        }
-      }
+      // {
+      //   path: '/forgotpassword',
+      //   getComponent(location, cb) {
+      //     System.import('./containers/forgotpassword/ForgotPassword')
+      //       .then(module => cb(null, module.default));
+      //   }
+      // }
     ]
   };
 
