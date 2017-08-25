@@ -12,7 +12,7 @@ import {
 } from '../common/actions';
 const API_URL = API.BASE_API + ENDPOINT.LOGIN_URL;
 
-import * as ProfileAction from '../profile/actions';
+//import * as ProfileAction from '../profile/actions';
 
 export const types = {
   LOGIN: 'LOGIN',
@@ -79,7 +79,7 @@ export function requestLoginDetails(data) {
       Storage.setUser(data.account);
       if (data.account.role == 'default' || data.account.role == 'init') {
         //dispatch(profileAction.setAccountId(data.account.id));
-        dispatch(ProfileAction.restGetProfileDetails(data.account.id));       
+        //dispatch(ProfileAction.restGetProfileDetails(data.account.id));       
       } else {
         dispatch(redirectEvent('/menu'));
       }

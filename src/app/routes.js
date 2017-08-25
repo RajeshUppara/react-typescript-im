@@ -2,7 +2,8 @@ import React from 'react';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
 import Main from './containers/Main';
-import LoginForm from "./containers/login/LoginForm";
+//import LoginForm from "./containers/login/LoginForm";
+import LoginFormContainer from "./containers/login/LoginFormContainer";
 
 // export default (
 //   <div>
@@ -16,12 +17,12 @@ import LoginForm from "./containers/login/LoginForm";
 const componentRoutes = {
     component: Main,
     path: '/',
-    indexRoute: { component: LoginForm },
+    indexRoute: { component: LoginFormContainer },
     childRoutes: [
       {
         path: '/login',
         getComponent(location, cb) {
-          System.import('./containers/login/LoginForm')
+          System.import('./containers/login/LoginFormContainer')
             .then(module => cb(null, module.default));
         }
       },

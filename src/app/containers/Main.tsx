@@ -9,16 +9,16 @@ import LoaderComponent from "../components/common/LoaderComponent";
 class Main extends React.Component<any, any> {
 
     constructor(props: any) {
-        super(props);        
+        super(props);
         this.renderToast = this.renderToast.bind(this);
         this.renderLoader = this.renderLoader.bind(this);
     }
-  componentWillReceiveProps(nextProps: any) {
-    if(nextProps.common.redirectUrl && nextProps.common.redirectUrl != null) {
-      this.props.router.push(nextProps.common.redirectUrl);
-      nextProps.common.redirectUrl  = null;
+    componentWillReceiveProps(nextProps: any) {
+        if (nextProps.common.redirectUrl && nextProps.common.redirectUrl != null) {
+            this.props.router.push(nextProps.common.redirectUrl);
+            nextProps.common.redirectUrl = null;
+        }
     }
-  }
     renderToast() {
         return (
             <ToastComponent

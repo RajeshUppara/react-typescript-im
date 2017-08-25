@@ -1,6 +1,6 @@
 import React from 'react';
 const { PropTypes } = React;
-import iconPaths from './fonticons.js';
+import iconPaths from './fonticons';
 
 function getPath(iconName: string): string {
   const icon = iconPaths.icons.find(icon => icon.properties.name === iconName);
@@ -17,11 +17,11 @@ const Icon = (props: any) => (
   </svg>
 );
 
-Icon.propTypes = {
-  icon: PropTypes.string.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  color: PropTypes.string.isRequired
-};
+// Icon.propTypes = {
+//   icon: PropTypes.string.isRequired,
+//   width: PropTypes.number.isRequired,
+//   height: PropTypes.number.isRequired,
+//   color: PropTypes.string.isRequired
+// };
 
 export default Icon;

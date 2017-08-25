@@ -30,7 +30,7 @@ export function toastEvent(message: string, showToast: boolean): Action<IShowToa
     }
   };
 }
-export function restlogin(route, reqData) {
+export function restlogin(route: any, reqData: any) {
   return new Promise((reslove, reject) => {
     request
       .post(route)
@@ -55,7 +55,7 @@ export function restlogin(route, reqData) {
   });
 }
 
-export function rest(route, reqData, isSecure) {
+export function rest(route: any, reqData: any, isSecure:any) {
   return new Promise((reslove, reject) => {
     request
       .post(route)

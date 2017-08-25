@@ -1,5 +1,9 @@
-const validate = values => {
-  const errors = {}  
+const validate = (values: any) => {
+  type error = { email: string, password: string }
+  let errors: error = {
+    email: '',
+    password: ''
+  };
   let email = values['email'];
 
   if (!email) {

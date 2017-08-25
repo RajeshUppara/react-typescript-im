@@ -1,8 +1,9 @@
+import { Dispatch } from 'redux';
 import React, { Component, PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import Loader from 'react-loader';
 
-import { Image } from 'material-ui-image'
+//import { Image } from 'material-ui-image'
 import TextField from 'material-ui/TextField';
 import Checkbox from 'material-ui/Checkbox';
 import Subheader from 'material-ui/Subheader';
@@ -21,10 +22,28 @@ import { palette } from '../../constants/styles';
 import validate from './LoginFormValidate';
 import * as LoginActions from '../../redux/loginform/actions';
 
+export namespace LoginFormComponent {
+  export interface Props {
+    dispatch: Dispatch<{}>,
+    loginLoader: boolean,
+    router: any,
+    loginSuccess: boolean,
+    handleSubmit: any
+    pristine: boolean,
+    reset: boolean,
+    submitting: boolean,
+    valid: boolean,
+    handleSignIn: (values: Array<string>) => any
+  }
+  export interface State {
+    rememberMe: boolean,
+    open: boolean
+  }
+}
 
-class LoginFormComponent extends Component {
+class LoginFormComponent extends Component<LoginFormComponent.Props, LoginFormComponent.State> {
 
-  constructor(props, context) {
+  constructor(props: LoginFormComponent.Props, context: any) {
     super(props, context);
     this.state = {
       rememberMe: true,
@@ -32,20 +51,8 @@ class LoginFormComponent extends Component {
     };
     this.redirectSignUp = this.redirectSignUp.bind(this);
     this.redirectForgotpassword = this.redirectForgotpassword.bind(this);
-  
   }
 
-  // componentWillReceiveProps(nextProps) {  
-  //   if(nextProps.loginSuccess) {
-  //     this.props.router.push('/menu');
-  //   }
-  // }
-
-  // renderLoading() {
-  //   return this.props.loginLoader ? (
-  //     <CircularProgress size={60} thickness={7} />
-  //   ) : null;
-  // }
   redirectSignUp() {
     this.props.router.push('/register');
   }
@@ -62,7 +69,7 @@ class LoginFormComponent extends Component {
 
         <div className="row around-xs" style={{ height: '100vh', backgroundColor: '#009688' }}>
           <div className="card-align col-xs-12 col-sm-9 col-md-6 col-lg-6">
-            <RenderLogo color='#FFF'/>
+            <RenderLogo color='#FFF' />
             <Card className="card-container">
               <CardHeader title="Sign in" className='card-title' />
               <CardText >
@@ -100,18 +107,18 @@ class LoginFormComponent extends Component {
               </CardActions>
             </Card>
           </div>
-         
+
         </div>
       </form>
     )
   }
 }
 
-function loginSubmit(values, dispatch) {
+function loginSubmit(values: any, dispatch: Dispatch<{}>) {
   dispatch(LoginActions.requestLoginDetails(values));
 }
 
-export default LoginFormComponent = reduxForm({
+export default reduxForm({
   form: 'loginUserForm',
   loginSubmit,
   validate

@@ -4,9 +4,15 @@ import TextField from 'material-ui/TextField';
 import { palette } from '../../constants/styles';
 import Icon from '../../constants/Icons';
 
-export default class RenderLogo extends React.Component {
+export namespace RenderLogo {
+  export interface Props {
+    color: string
+  }
+}
 
-  constructor(props) {
+export default class RenderLogo extends React.Component<RenderLogo.Props, {}> {
+
+  constructor(props: RenderLogo.Props) {
     super(props);
   }
 
