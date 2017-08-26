@@ -1,9 +1,9 @@
 // Store for API urls and endpoints
 
 export const API = {
-  BASE_API: 'http://ec2-35-154-228-43.ap-south-1.compute.amazonaws.com/'
+  BASE_API: ''
 };
 
 export const ENDPOINT = {
-  LOGIN_URL: 'rightinvoices/company',
+  LOGIN_URL: '',
 };

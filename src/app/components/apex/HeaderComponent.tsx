@@ -19,14 +19,14 @@ export default class HeaderComponent extends React.Component<any, any> {
   render() {
     return (
       <div>
-        <AppBar title="Aham Dashboard " iconClassNameRight="muidocs-icon-navigation-expand-more" onTitleTouchTap={this.handleToggle} />
+        <AppBar title="Josu Dashboard " iconClassNameRight="muidocs-icon-navigation-expand-more" onTitleTouchTap={this.handleToggle} />
         <Drawer
           docked={false}
           width={200}
           open={this.state.open}
           onRequestChange={(open) => this.setState({ open })}
         >
-          <AppBar title="Aham" />
+          <AppBar title="Josu" />
           <MenuItem onTouchTap={this.handleClose}> <Link to="/classtimings">Class Timings</Link> </MenuItem>
           <hr />
           <MenuItem onTouchTap={this.handleClose}> <Link to="/studentpayments">Student Payments</Link> </MenuItem>
