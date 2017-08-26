@@ -20,7 +20,7 @@ const config = {
       path.join(__dirname, '/src/www/styles.scss'),
     ],
     bundle: [
-      path.join(__dirname, '/src/app/app.js')
+      path.join(__dirname, '/src/app/app.tsx')
     ],
     vendor: VENDOR_LIBS
   },
@@ -80,7 +80,7 @@ const config = {
   ],
   resolve: {
     // Look for modules in .ts(x) files first, then .js
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
 
     // add 'src' to the modules, so that when you import files you can do so with 'src' as the relative route
     modules: ['src', 'node_modules'],

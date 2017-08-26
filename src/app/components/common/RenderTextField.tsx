@@ -3,25 +3,25 @@ import { Field, reduxForm } from 'redux-form';
 import TextField from 'material-ui/TextField';
 import { palette } from '../../constants/styles';
 
-export namespace RenderTextField {
-  export interface Props {
-    name: string,
-    label: string,
-    type: string,
-    disabled?: boolean
+  export namespace RenderTextField {
+    export interface Props {
+      name: string,
+      label: string,
+      type: string,
+      disabled?: boolean
+    }
+    export type metaData = { touched: boolean, error: string };
+    export interface TextFieldProps {
+      touched: boolean,
+      input: string,
+      label: string,
+      type: string,
+      disabled: boolean,
+      meta: metaData,
+      custom: any,
+      error: string
+    }
   }
-  export type metaData = { touched: boolean, error: string };
-  export interface TextFieldProps {
-    touched: boolean,
-    input: string,
-    label: string,
-    type: string,
-    disabled: boolean,
-    meta: metaData,
-    custom: any,
-    error: string
-  }
-}
 
 export default class RenderTextField extends React.Component<RenderTextField.Props, {}> {
   constructor(props: RenderTextField.Props) {

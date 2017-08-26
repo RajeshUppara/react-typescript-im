@@ -16,7 +16,7 @@ const config = {
     js: 'webpack/hot/dev-server',
     js: 'webpack/hot/only-dev-server',
     js: 'react-hot-loader/patch',
-    js: [path.join(__dirname, '/src/app/app.js')],
+    js: [path.join(__dirname, '/src/app/app.tsx')],
     styles: [
       path.join(__dirname, '/src/www/styles/main.css'),
       path.join(__dirname, '/src/www/styles/styles.css'),
@@ -58,7 +58,7 @@ const config = {
   ],
   resolve: {
     // Look for modules in .ts(x) files first, then .js
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
 
     // add 'src' to the modules, so that when you import files you can do so with 'src' as the relative route
     modules: ['src', 'node_modules'],

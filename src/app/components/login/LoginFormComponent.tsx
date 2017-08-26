@@ -75,7 +75,7 @@ class LoginFormComponent extends React.Component<LoginFormComponent.Props , Logi
 
         <div className="row around-xs" style={{ height: '100vh', backgroundColor: '#009688' }}>
           <div className="card-align col-xs-12 col-sm-9 col-md-6 col-lg-6">
-            <RenderLogo color='#FFF' />
+            {/* <RenderLogo color='#FFF' /> */}
             <Card className="card-container">
               <CardHeader title="Sign in" className='card-title' />
               <CardText >
@@ -100,7 +100,7 @@ class LoginFormComponent extends React.Component<LoginFormComponent.Props , Logi
                 </div>
                 <div className="row middle-xs" style={{ marginRight: -8, marginLeft: -8, fontSize: "80%" }}>
                   <div className=" col-xs-6 col-sm-4">
-                    New to Right Invoices?
+                    New to Josu?
                   </div>
                   <div className=" col-xs-6 col-sm-8 ">
                     <RaisedButton
