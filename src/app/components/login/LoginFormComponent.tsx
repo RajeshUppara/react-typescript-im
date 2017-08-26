@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import React, { Component, PropTypes } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 import Loader from 'react-loader';
 
 //import { Image } from 'material-ui-image'
@@ -23,25 +23,28 @@ import validate from './LoginFormValidate';
 import * as LoginActions from '../../redux/loginform/actions';
 
 export namespace LoginFormComponent {
-  export interface Props {
+  export type Props = {
     dispatch: Dispatch<{}>,
     loginLoader: boolean,
     router: any,
     loginSuccess: boolean,
-    handleSubmit: any
-    pristine: boolean,
-    reset: boolean,
-    submitting: boolean,
-    valid: boolean,
-    handleSignIn: (values: Array<string>) => any
-  }
+    handleSubmit?: any
+    pristine?: boolean,
+    reset?: boolean,
+    submitting?: boolean,
+    valid?: boolean,
+    handleSignIn?: (values: Array<string>) => any
+  } & InjectedFormProps
+
   export interface State {
     rememberMe: boolean,
     open: boolean
   }
 }
 
-class LoginFormComponent extends Component<LoginFormComponent.Props, LoginFormComponent.State> {
+class LoginFormComponent extends React.Component<LoginFormComponent.Props , LoginFormComponent.State> {
+  
+//class LoginFormComponent extends Component<LoginFormComponent1.Props, LoginFormComponent1.State> {
 
   constructor(props: LoginFormComponent.Props, context: any) {
     super(props, context);
@@ -61,6 +64,9 @@ class LoginFormComponent extends Component<LoginFormComponent.Props, LoginFormCo
     this.props.router.push('/forgotpassword');
   }
 
+  static handleSubmit1(values: any) {
+    
+  };
 
   render() {
     const { handleSubmit, pristine, reset, submitting, valid } = this.props;
@@ -114,12 +120,13 @@ class LoginFormComponent extends Component<LoginFormComponent.Props, LoginFormCo
   }
 }
 
-function loginSubmit(values: any, dispatch: Dispatch<{}>) {
+function loginSubmit(values: any, dispatch: Dispatch<{}>, props: LoginFormComponent.Props) {
   dispatch(LoginActions.requestLoginDetails(values));
+  //dispatch(props.handleSignIn(values));
 }
 
 export default reduxForm({
-  form: 'loginUserForm',
-  loginSubmit,
-  validate
+  form: 'LoginFormComponent',
+  validate,
+  loginSubmit
 })(LoginFormComponent);

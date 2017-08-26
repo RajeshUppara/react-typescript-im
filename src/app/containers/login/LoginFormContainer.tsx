@@ -40,12 +40,7 @@ class LoginFormContainer extends Component<LoginForm.Props, LoginForm.State> {
   render() {
     return (
       <div >
-        <LoginFormComponent
-          dispatch={this.props.dispatch}
-          loginLoader={this.props.loginform.loading}
-          router={this.props.router}
-          loginSuccess={this.props.loginform.loginSuccess}
-        />
+        <LoginFormComponent {...this.props} />
       </div>
     )
   }

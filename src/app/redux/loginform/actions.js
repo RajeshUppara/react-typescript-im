@@ -61,6 +61,7 @@ export function setLoading(loading) {
 }
 
 export function requestLoginDetails(data) {
+  console.log("Requested for login data");
   const reqData = {
     cmd: 'login',
     data: {
