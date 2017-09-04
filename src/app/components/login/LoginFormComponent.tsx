@@ -61,7 +61,7 @@ class LoginFormComponent extends React.Component<LoginFormComponent.Props , Logi
   }
 
   redirectForgotpassword() {
-    this.props.router.push('/forgotpassword');
+    this.props.router.push('/reacttimeline');
   }
 
   static handleSubmit1(values: any) {
@@ -93,7 +93,7 @@ class LoginFormComponent extends React.Component<LoginFormComponent.Props , Logi
 
                 <div className="link-item" style={{ marginLeft: "-16px" }} >
                   <FlatButton
-                    label="Forgot password?"
+                    label="timeline"
                     secondary={true}
                     onClick={this.redirectForgotpassword}
                     style={{ fontSize: '80%' }} />
